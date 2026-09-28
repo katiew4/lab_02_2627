@@ -21,7 +21,7 @@ format:
 
 ### Tasks
 
-- [ ] Print "Hello World" to the console. 
+- [x] Print "Hello World" to the console. 
 - [ ] Write a function that takes a name, and prints "Hello <name>" to the console.
 - [ ] Assign the value 42 to a variable called `answer`.
 - [ ] Create a numeric vector containing the numbers 1 through 5.
@@ -31,6 +31,38 @@ format:
 - [ ] Write a function that returns the square of its input.
 - [ ] Use a for loop to print the numbers 1 to 5.
 - [ ] Use a for loop to compute the mean of a numeric vector.
+
+```{r}
+print("Hello world")
+
+printname <- function(name){
+  cat("Hello", name)
+}
+printname("Katie")
+
+
+answer <- 42
+
+c(1:5)
+
+c(1:1000)
+
+matrix(1:100, nrow=10, ncol=10)
+
+data.frame(
+  name = c("Emilie", "Eleanor", "Becca"),
+  age = c(19, 19, 20)
+)
+
+number = 4
+function(number) {
+  number^2 
+}
+
+
+
+
+```
 
 
 ## Part 1b: Lists
@@ -117,14 +149,24 @@ library(dplyr)
 We will apply them to the following data frame of students and their exam scores:
 
 ```{r}
+library(dplyr)
 students <- data.frame(
     name = c("Ada", "Alan", "Grace", "Edsger", "Katherine"),
     score = c(72, 65, 43, 38, 91)
 )
+students$result = if_else(students$score>40, "pass", "fail")
+students$grade = case_when(
+  students$score>69 ~ "first",
+  students$score>59 ~ "2:1",
+  students$score>49 ~ "2:2",
+  students$score>39 ~ "third",
+  students$score<40 ~ "fail"
+)
+print(students)
 ```
 
-- [ ] Using `if_else`, add a new column `result` to `students` that is `"pass"` when the score is at least 40 and `"fail"` otherwise.
-- [ ] Using `case_when`, add a new column `grade` to `students` giving the classification: `"first"` (at least 70), `"2:1"` (at least 60), `"2:2"` (at least 50), `"third"` (at least 40), and `"fail"` otherwise. Remember that conditions are checked in order, so the most specific should come first.
+- [x] Using `if_else`, add a new column `result` to `students` that is `"pass"` when the score is at least 40 and `"fail"` otherwise.
+- [x] Using `case_when`, add a new column `grade` to `students` giving the classification: `"first"` (at least 70), `"2:1"` (at least 60), `"2:2"` (at least 50), `"third"` (at least 40), and `"fail"` otherwise. Remember that conditions are checked in order, so the most specific should come first.
 - [ ] Standard `if`/`else` statements make a single decision about a single value. Using `if`, `else if` and `else`, complete the stub function `is_leap_year` below so that it returns `TRUE` if `year` is a *leap year* and `FALSE` otherwise. The rule is:
     - if `year` is divisible by 400, it is a leap year;
     - otherwise, if `year` is divisible by 100, it is *not* a leap year;
